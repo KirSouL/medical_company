@@ -1,0 +1,19 @@
+{% extends 'medical/index.html' %}
+{% block content %}
+<div class="col-4">
+    <div class="card mb-4 box-shadow">
+        <div class="card-body">
+            <img src="{{ object.avatar | media }}" alt="image_avatar" width="300" height="250"
+                 class="d-inline-block align-text-top">
+            <ul class="list-unstyled mt-3 mb-4 text-center m-3">
+                <li>{{ object.first_name }}</li>
+                <li>{{ object.patronymic }}</li>
+                <li>{{ object.last_name }}</li>
+                <li>{{ object.position }}</li>
+                <li>{{ object.about_employee }}</li>
+                <li>{{ object.experience }}</li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

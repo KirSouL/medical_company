@@ -1,0 +1,33 @@
+{% extends 'medical/index.html' %}
+{% block content %}
+<div class="col-3">
+    <div class="card mb-4 box-shadow">
+        <div class="card-header">
+            <button type="button" class="btn btn-lg btn-block btn-outline-primary">О медицинской диагностике</button>
+        </div>
+        <div class="card-body">
+            <ul class="list-unstyled mt-3 mb-3 text-center">
+                <li>Основной задачей всех специалистов нашего центра является чуткий, индивидуальный подход к каждому пациенту,
+                    максимально точная диагностика заболевания и исчерпывающая методология лечения или профилактика симптом.
+                    Результатом данного подхода является "адресная" помощь пациенту, исключающая навязывание излишних услуг.
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% for object in object_list %}
+<div class="col-3">
+    <div class="card mb-4 box-shadow">
+        <div class="card-body">
+            <ul class="list-unstyled mt-3 mb-3 text-center">
+                <li>{{ object.avatar }}</li>
+                <li>{{ object.first_name }}<li>
+                <li>{{ object.last_name }}<li>
+                <li>{{ object.patronymic }}<li>
+                <li>{{ object.position }}<li>
+            </ul>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}

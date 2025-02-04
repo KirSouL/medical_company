@@ -1,0 +1,85 @@
+{% extends 'medical/index.html' %}
+{% block content %}
+<div class="col-12 mb-5">
+    {% if user.is_superuser %}
+    <a class="btn btn-lg btn-block btn-outline-primary" href="{% url 'medical:medical-create' %}">
+        Добавить продукт
+    </a>
+    {% endif %}
+</div>
+{% for object in object_list %}
+<div class="col-6" xmlns="http://www.w3.org/1999/html">
+    <div class="card mb-4 box-shadow">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">{{ object.title }}</h4>
+        </div>
+        <div class="card-body">
+            <h2 class="card-title pricing-card-title">{{ object.price }}</h2>
+            <ul class="list-unstyled mt-3 mb-4 text-center">
+                <li>{{ object.photo }}</li>
+                <li>{{ object.information }}</li>
+            </ul>
+            <div class="btn-group">
+                <p class="d-inline-flex gap-1">
+                    <a href="{% url 'medical:medical-detail' object.pk %}"
+                       class="btn btn-lg btn-block btn-outline-primary">
+                        Инфо
+                    </a>
+                    {% if user.is_superuser %}
+                    <a href="{% url 'medical:medical-update' object.pk %}"
+                       class="btn btn-lg btn-block btn-outline-primary">
+                        Обновить
+                    </a>
+                    {% endif %}
+                    {% if user.is_superuser %}
+                    <a href="{% url 'medical:medical-delete' object.pk %}"
+                       class="btn btn-lg btn-block btn-outline-primary">
+                        Удалить
+                    </a>
+                    {% endif %}
+                    <a class="btn btn-lg btn-block btn-outline-primary">
+                        Оформить услугу
+                    </a>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="col-lg-3 col-md-6 col-sm-12">
+    <div class="card mb-4 box-shadow">
+        <div class="card-header">
+            <h4 class="my-0 font-weight-normal">Свяжитесь с нами</h4>
+        </div>
+        <div class="card-body">
+            <form method="post" action="" class="form-floating">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="name">Имя</label>
+                    <input type="text" name="name" class="form-control" id="name" placeholder="Ваше имя"
+                           required>
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" name="email" class="form-control" id="email"
+                           placeholder="name@example.com">
+                </div>
+
+                <div class="mb-3">
+                    <label for="phone">Телефон</label>
+                    <input type="text" name="phone" class="form-control" id="phone"
+                           placeholder="Контактный телефон" required>
+                </div>
+                <div class="mb-3">
+                    <label for="message">Сообщение</label>
+                    <textarea type="text" name="message" class="form-control" id="message"
+                              placeholder="Сообщение" required></textarea>
+                </div>
+                <button type="submit" value="Отправить" class="btn btn-lg btn-block btn-outline-primary">
+                    Отправить
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endfor %}
+{% endblock %}
